@@ -41,14 +41,15 @@
                     </li>
                 </ul>
                 <span class="navbar-text">
-                    <a data-toggle="modal" data-target="#loginModal">
-                    <span class="fa fa-sign-in"></span> Login</a>
+                    <a href="#" id="login" class="openmodal">
+                        <span class="fa fa-sign-in"></span> Login
+                    </a>
                 </span>
             </div>
         </div>
     </nav>
 
-    <div id="loginModal" class="modal fade" role="dialog">
+    <div id="login-modal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg" role="content">
             <!-- Modal content-->
             <div class="modal-content">
@@ -85,27 +86,7 @@
         </div>
     </div>
 
-    <header class="jumbotron">
-        <div class="container">
-            <div class="row row-header">
-                <div class="col-12 col-sm-6">
-                    <h1>Ristorante con Fusion</h1>
-                    <p>We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations will tickle your culinary senses!</p>
-                </div>
-                <div class="col-12 col-sm-3 align-self-center">
-                    <img src="img/logo.png" class="img-fluid">
-                </div>
-                <div class="col-12 col-sm-3 align-self-center">
-                    <button type="button"
-                       class="btn btn-block btn-warning"
-                       data-toggle="modal"
-                       data-target="#reserveModal">Reserve Table</button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div id="reserveModal" class="modal fade" role="dialog">
+    <div id="reserve-modal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg" role="content">
             <!-- Modal content-->
             <div class="modal-content">
@@ -177,6 +158,25 @@
             </div>
         </div>
     </div>
+
+    <header class="jumbotron">
+        <div class="container">
+            <div class="row row-header">
+                <div class="col-12 col-sm-6">
+                    <h1>Ristorante con Fusion</h1>
+                    <p>We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations will tickle your culinary senses!</p>
+                </div>
+                <div class="col-12 col-sm-3 align-self-center">
+                    <img src="img/logo.png" class="img-fluid">
+                </div>
+                <div class="col-12 col-sm-3 align-self-center">
+                    <button type="button"
+                            id="reserve"
+                            class="btn btn-block btn-warning openmodal">Reserve Table</button>
+                </div>
+            </div>
+        </div>
+    </header>
 
     <div class="container">
         <div class="row row-content">
@@ -308,7 +308,7 @@
     <script>
         $(document).ready(function(){
             $("#mycarousel").carousel( { interval: 2000 } );
-            
+
             $("#carouselButton").click(function(){
                 if ($("#carouselButton").children("span").hasClass('fa-pause')) {
                     $("#mycarousel").carousel('pause');
@@ -320,6 +320,17 @@
                     $("#carouselButton").children("span").removeClass('fa-play');
                     $("#carouselButton").children("span").addClass('fa-pause');                    
                 }
+            });
+
+            // Open modal based on button clicked
+            $('.openmodal').click(function(e) {
+                e.preventDefault();
+
+                var id = this.id,
+                     m = $('#' + id + '-modal');
+
+                // Toggles modal, should always open it
+                m.modal('toggle');
             });
         });
     </script>
